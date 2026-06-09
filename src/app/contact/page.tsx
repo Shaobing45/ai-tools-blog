@@ -42,15 +42,10 @@ export default function ContactPage() {
             <li>
               <strong>邮箱：</strong>
               <code className="bg-indigo-100 dark:bg-indigo-900 px-2 py-0.5 rounded text-sm">
-                hello@aicreateguide.com
+                shaobing152@gmail.com
               </code>
             </li>
             <li>
-              <strong>微信：</strong>
-              <code className="bg-indigo-100 dark:bg-indigo-900 px-2 py-0.5 rounded text-sm">
-                aicreateguide
-              </code>
-            </li>
             <li className="pt-2">
               <strong>响应时间：</strong>通常 24 小时内回复
             </li>

@@ -63,10 +63,7 @@ export default function AboutPage() {
           </p>
           <ul className="mt-3 space-y-2 text-indigo-700 dark:text-indigo-300">
             <li>
-              📧 邮箱：<code className="bg-indigo-100 dark:bg-indigo-900 px-2 py-0.5 rounded">hello@aicreateguide.com</code>
-            </li>
-            <li>
-              💬 微信：<code className="bg-indigo-100 dark:bg-indigo-900 px-2 py-0.5 rounded">aicreateguide</code>
+              📧 邮箱：<code className="bg-indigo-100 dark:bg-indigo-900 px-2 py-0.5 rounded">shaobing152@gmail.com</code>
             </li>
           </ul>
         </section>

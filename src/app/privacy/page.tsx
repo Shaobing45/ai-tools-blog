@@ -46,7 +46,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">5. 联系我们</h2>
           <p>
-            如有任何隐私相关问题，请联系：hello@aicreateguide.com
+            如有任何隐私相关问题，请联系：shaobing152@gmail.com
           </p>
         </section>
       </div>
