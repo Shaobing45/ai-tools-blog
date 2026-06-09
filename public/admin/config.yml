@@ -1,0 +1,96 @@
+# Decap CMS 配置文件
+# 文档: https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: git-gateway
+  branch: main
+  # 本地开发时使用 local_backend
+  # 启动命令: npx decap-server
+  local_backend: true
+
+# 媒体文件存储位置
+media_folder: public/images
+public_folder: /images
+
+# 站点信息
+site_url: https://aicreateguide.com
+display_url: https://aicreateguide.com
+logo_url: https://aicreateguide.com/favicon.ico
+
+# 编辑器设置
+publish_mode: editorial_workflow
+slug:
+  encoding: ascii
+  clean_accents: true
+
+# 内容集合定义
+collections:
+  - name: posts
+    label: 📝 文章
+    label_singular: 文章
+    folder: content/posts
+    create: true
+    extension: mdx
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: posts/{{slug}}
+    summary: "{{title}} — {{date}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+        hint: 文章的主标题，会显示在列表和详情页
+      - label: 发布日期
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        default: "{{now}}"
+      - label: 分类
+        name: category
+        widget: select
+        options:
+          - { label: "AI 工具", value: "ai-tools" }
+          - { label: "副业指南", value: "side-hustle" }
+          - { label: "实用教程", value: "tutorial" }
+        default: tutorial
+      - label: 摘要
+        name: excerpt
+        widget: text
+        hint: 文章简短描述，会显示在文章卡片和 SEO 描述中
+      - label: 封面图
+        name: coverImage
+        widget: image
+        required: false
+        hint: 可选。文章列表和社交分享中使用的图片
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+        hint: 每行一个标签，如 ChatGPT、副业
+      - label: 联盟产品
+        name: affiliateProducts
+        widget: list
+        required: false
+        summary: "{{name}} — {{price}}"
+        fields:
+          - { label: 产品名称, name: name, widget: string }
+          - { label: 链接, name: link, widget: string }
+          - { label: 描述, name: description, widget: text }
+          - { label: 价格, name: price, widget: string, required: false }
+      - label: 正文
+        name: body
+        widget: markdown
+        hint: 使用 Markdown 格式撰写文章正文
+
+  - name: pages
+    label: 📄 页面
+    label_singular: 页面
+    folder: content/pages
+    create: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 正文, name: body, widget: markdown }

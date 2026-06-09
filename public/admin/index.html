@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内容管理 — AI创收指南</title>
+  <link href="/admin/preview.css" rel="stylesheet" />
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <style>
+    /* 覆盖 CMS 默认中文字体 */
+    .css-1v08e5d-Control {
+      font-size: 14px !important;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // 自定义预览模板（可选）
+    CMS.registerPreviewTemplate('posts', createPostPreview)
+    CMS.registerPreviewTemplate('pages', createPagePreview)
+
+    function createPostPreview({ entry, widgetFor }) {
+      const title = entry.getIn(['data', 'title'])
+      const category = entry.getIn(['data', 'category'])
+      const date = entry.getIn(['data', 'date'])
+      const categoryLabels = {
+        'ai-tools': 'AI 工具',
+        'side-hustle': '副业指南',
+        'tutorial': '实用教程',
+      }
+      return h('article', { style: { maxWidth: '720px', margin: '0 auto', padding: '2rem 1rem', fontFamily: 'system-ui, sans-serif' } },
+        h('span', { style: { display: 'inline-block', padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.75rem', background: '#eef2ff', color: '#4338ca', marginBottom: '1rem' } },
+          categoryLabels[category] || category
+        ),
+        h('h1', { style: { fontSize: '2rem', fontWeight: 800, marginBottom: '0.75rem', lineHeight: 1.3 } }, title),
+        date && h('time', { style: { color: '#6b7280', fontSize: '0.875rem' } }, new Date(date).toLocaleDateString('zh-CN')),
+        h('hr', { style: { margin: '1.5rem 0', border: 'none', borderTop: '1px solid #e5e7eb' } }),
+        h('div', { style: { lineHeight: 1.85, color: '#374151' } }, widgetFor('body'))
+      )
+    }
+
+    function createPagePreview({ entry, widgetFor }) {
+      const title = entry.getIn(['data', 'title'])
+      return h('article', { style: { maxWidth: '720px', margin: '0 auto', padding: '2rem 1rem', fontFamily: 'system-ui, sans-serif' } },
+        h('h1', { style: { fontSize: '2rem', fontWeight: 800, marginBottom: '1.5rem' } }, title),
+        h('div', { style: { lineHeight: 1.85, color: '#374151' } }, widgetFor('body'))
+      )
+    }
+
+    function h(tag, attrs, ...children) {
+      const el = document.createElement(tag)
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => { el[k] = v })
+      children.flat().forEach(child => {
+        if (typeof child === 'string') el.appendChild(document.createTextNode(child))
+        else if (child instanceof Node) el.appendChild(child)
+      })
+      return el
+    }
+
+    CMS.init()
+  </script>
+</body>
+</html>
